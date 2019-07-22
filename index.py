@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'index.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -69,7 +70,7 @@ class Ui_Form(object):
         self.textBrowser = QtWidgets.QTextBrowser(Form)
         font = QtGui.QFont()
         font.setFamily("宋体")
-        font.setPointSize(20)
+        font.setPointSize(15)
         self.textBrowser.setFont(font)
         self.textBrowser.setObjectName("textBrowser")
         self.horizontalLayout_2.addWidget(self.textBrowser)
@@ -85,4 +86,5 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.pushButton.setText(_translate("Form", "查询"))
+
 

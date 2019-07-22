@@ -109,7 +109,7 @@
        <property name="font">
         <font>
          <family>宋体</family>
-         <pointsize>20</pointsize>
+         <pointsize>15</pointsize>
         </font>
        </property>
       </widget>

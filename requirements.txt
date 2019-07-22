@@ -1,0 +1,11 @@
+Click==7.0
+Flask==1.1.0
+itsdangerous==1.1.0
+Jinja2==2.10.1
+MarkupSafe==1.1.1
+PyQt5==5.12.1
+PyQt5-sip==4.19.18
+PyQt5-stubs==5.12.1.0
+pyqt5-tools==5.11.3.1.4
+python-dotenv==0.10.3
+Werkzeug==0.15.4

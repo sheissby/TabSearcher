@@ -45,7 +45,8 @@ class Search(QtWidgets.QWidget, Ui_Form):
 
     def show_all(self):
         display = []
-        for root, _, files in os.walk(os.getcwd()+'\\tab'):
+        # for root, _, files in os.walk(os.getcwd()+'\\tab'):
+        for root, _, files in os.walk('E:\\My Documents\\tabs\\文字谱'):
             for file in files:
                 filedic = {}
                 fullfilepath = os.path.join(root, file)
@@ -70,7 +71,7 @@ class Search(QtWidgets.QWidget, Ui_Form):
         else:
             for i in self.filelist:
                 if text == i['filename']:
-                    with open(i['filepath']) as f:
+                    with open(i['filepath'], encoding='utf-8') as f:
                         content = f.read()
                     self.textBrowser.append(content)
                     break
