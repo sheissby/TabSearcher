@@ -1,47 +1,79 @@
 import os
 import sys
 from PyQt5 import QtWidgets
-# from demo import Ui_Dialog
-
-# class main(QtWidgets.QWidget,Ui_Dialog):
-#     def __init__(self):
-#         super(main,self).__init__()
-#         self.setupUi(self)
-#
-#     #实现pushButton_click()函数，textEdit是我们放上去的文本框的id
-#     def btn_click(self):
-#         self.textEdit.setText("你点击了按钮")
-
 from index import Ui_Form
 
 
 class Search(QtWidgets.QWidget, Ui_Form):
+    filelist = []
+    res = []
+    res_display = []
+    detail_display = []
+
     def __init__(self):
         super(Search, self).__init__()
         self.setupUi(self)
         self.show_all()
 
     def search(self):
-        res = []
-        self.listWidget_2.clear()
-        text = self.lineEdit.text()
-        for item in self.data:
-            if text in item:
-                res.append(item)
-        if len(res) != 0:
-            self.listWidget_2.addItems(res)
+        self.res.clear()
+        res_display = []
+        self.listWidget.clear()
+        text = self.lineEdit.text().strip()
+        if text:
+            for item in self.filelist:
+                tmp = {}
+                if text in item['filename']:
+                    tmp['filename'] = item['filename']
+                    tmp['filepath'] = item['filepath']
+                    self.res.append(tmp)
+                    res_display.append(item['filename'])
+            if len(self.res) == len(res_display) and len(self.res) != 0:
+                self.listWidget.addItems(res_display)
+            elif len(self.res) == len(res_display) == 0:
+                self.listWidget.addItem('没有找到结果')
+            else:
+                print(self.res)
+                print(res_display)
+                print('something wrong')
         else:
-            self.listWidget_2.addItem('没有找到结果')
+            self.filelist.clear()
+            self.res.clear()
+            self.lineEdit.clear()
+            self.listWidget.clear()
+            self.show_all()
 
     def show_all(self):
-        self.data = []
-        for _, _, files in os.walk(os.getcwd()+'\\tab'):
+        display = []
+        for root, _, files in os.walk(os.getcwd()+'\\tab'):
             for file in files:
-                self.data.append(file)
-        # self.data = ['1','1','3','4','5']
-        self.listWidget.addItems(self.data)
+                filedic = {}
+                fullfilepath = os.path.join(root, file)
+                filename = file
+                filedic['filename'] = filename
+                filedic['filepath'] = fullfilepath
+                self.filelist.append(filedic)
+                display.append(filename)
+        self.listWidget.addItems(display)
 
-    # def click(self):
+    def show_detail(self, item):
+        self.detail_display.clear()
+        self.textBrowser.clear()
+        text = item.text()
+        if self.res:
+            for i in self.res:
+                if text == i['filename']:
+                    with open(i['filepath']) as f:
+                        content = f.read()
+                    self.textBrowser.append(content)
+                    break
+        else:
+            for i in self.filelist:
+                if text == i['filename']:
+                    with open(i['filepath']) as f:
+                        content = f.read()
+                    self.textBrowser.append(content)
+                    break
 
 
 if __name__ == '__main__':
