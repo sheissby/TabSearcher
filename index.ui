@@ -127,8 +127,8 @@
    <slot>search()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>640</x>
-     <y>35</y>
+     <x>734</x>
+     <y>37</y>
     </hint>
     <hint type="destinationlabel">
      <x>551</x>
@@ -143,8 +143,8 @@
    <slot>show_detail()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>277</x>
-     <y>128</y>
+     <x>265</x>
+     <y>174</y>
     </hint>
     <hint type="destinationlabel">
      <x>237</x>
@@ -165,6 +165,38 @@
     <hint type="destinationlabel">
      <x>172</x>
      <y>27</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit</sender>
+   <signal>returnPressed()</signal>
+   <receiver>Form</receiver>
+   <slot>search()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>483</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>383</x>
+     <y>2</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>listWidget</sender>
+   <signal>currentItemChanged(QListWidgetItem*,QListWidgetItem*)</signal>
+   <receiver>Form</receiver>
+   <slot>show_detail()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>65</x>
+     <y>0</y>
     </hint>
    </hints>
   </connection>

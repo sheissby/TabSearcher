@@ -47,13 +47,14 @@ class Search(QtWidgets.QWidget, Ui_Form):
         display = []
         for root, _, files in os.walk(os.getcwd()+'\\tab'):
             for file in files:
-                filedic = {}
-                fullfilepath = os.path.join(root, file)
-                filename = file
-                filedic['filename'] = filename
-                filedic['filepath'] = fullfilepath
-                self.filelist.append(filedic)
-                display.append(filename)
+                if file.split('.')[-1].lower() in ('txt'):
+                    filedic = {}
+                    fullfilepath = os.path.join(root, file)
+                    filename = file
+                    filedic['filename'] = filename.split('.')[0]
+                    filedic['filepath'] = fullfilepath
+                    self.filelist.append(filedic)
+                    display.append(filename.split('.')[0])
         self.listWidget.addItems(display)
 
     def show_detail(self, item):
@@ -63,7 +64,7 @@ class Search(QtWidgets.QWidget, Ui_Form):
         if self.res:
             for i in self.res:
                 if text == i['filename']:
-                    with open(i['filepath']) as f:
+                    with open(i['filepath'], encoding='utf-8') as f:
                         content = f.read()
                     self.textBrowser.append(content)
                     break

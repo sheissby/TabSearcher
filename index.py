@@ -79,6 +79,8 @@ class Ui_Form(object):
         self.pushButton.clicked.connect(Form.search)
         self.listWidget.itemClicked['QListWidgetItem*'].connect(Form.show_detail)
         self.listWidget.itemDoubleClicked['QListWidgetItem*'].connect(Form.show_detail)
+        self.lineEdit.returnPressed.connect(Form.search)
+        self.listWidget.currentItemChanged['QListWidgetItem*','QListWidgetItem*'].connect(Form.show_detail)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
