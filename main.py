@@ -45,8 +45,7 @@ class Search(QtWidgets.QWidget, Ui_Form):
 
     def show_all(self):
         display = []
-        # for root, _, files in os.walk(os.getcwd()+'\\tab'):
-        for root, _, files in os.walk('E:\\My Documents\\tabs\\文字谱'):
+        for root, _, files in os.walk(os.getcwd()+'\\tab'):
             for file in files:
                 filedic = {}
                 fullfilepath = os.path.join(root, file)
