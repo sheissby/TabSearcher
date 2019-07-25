@@ -45,7 +45,7 @@ class Search(QtWidgets.QWidget, Ui_Form):
 
     def show_all(self):
         display = []
-        for root, _, files in os.walk(os.getcwd()+'\\tab'):
+        for root, _, files in os.walk(os.getcwd()+'\\tab\\文字谱'):
             for file in files:
                 if file.split('.')[-1].lower() in ('txt'):
                     filedic = {}
@@ -64,17 +64,24 @@ class Search(QtWidgets.QWidget, Ui_Form):
         if self.res:
             for i in self.res:
                 if text == i['filename']:
-                    with open(i['filepath'], encoding='utf-8') as f:
-                        content = f.read()
-                    self.textBrowser.append(content)
-                    break
+                    try:
+                        with open(i['filepath'], encoding='utf-8') as f:
+                            content = f.read()
+                        self.textBrowser.append(content)
+                        break
+                    except Exception as e:
+                        print(e)
         else:
             for i in self.filelist:
                 if text == i['filename']:
-                    with open(i['filepath'], encoding='utf-8') as f:
-                        content = f.read()
-                    self.textBrowser.append(content)
-                    break
+                    try:
+                        with open(i['filepath'], encoding='utf-8') as f:
+                            content = f.read()
+                        self.textBrowser.append(content)
+                        self.textBrowser.moveCursor(self.textBrowser.textCursor().Start)
+                        break
+                    except Exception as e:
+                        print(e)
 
 
 if __name__ == '__main__':
