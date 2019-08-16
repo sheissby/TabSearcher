@@ -1,7 +1,10 @@
 import os
 import sys
 from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication
+
 from index import Ui_Form
+from PyQt5.QtCore import *
 
 
 class Search(QtWidgets.QWidget, Ui_Form):
@@ -59,15 +62,16 @@ class Search(QtWidgets.QWidget, Ui_Form):
 
     def show_detail(self, item):
         self.detail_display.clear()
-        self.textBrowser.clear()
+        self.textEdit.clear()
         text = item.text()
         if self.res:
             for i in self.res:
                 if text == i['filename']:
                     try:
-                        with open(i['filepath'], encoding='utf-8') as f:
+                        self.filepath = i['filepath']
+                        with open(self.filepath, encoding='utf-8') as f:
                             content = f.read()
-                        self.textBrowser.append(content)
+                        self.textEdit.setPlainText(content)
                         break
                     except Exception as e:
                         print(e)
@@ -75,13 +79,22 @@ class Search(QtWidgets.QWidget, Ui_Form):
             for i in self.filelist:
                 if text == i['filename']:
                     try:
-                        with open(i['filepath'], encoding='utf-8') as f:
+                        self.filepath = i['filepath']
+                        with open(self.filepath, encoding='utf-8') as f:
                             content = f.read()
-                        self.textBrowser.append(content)
-                        self.textBrowser.moveCursor(self.textBrowser.textCursor().Start)
+                        self.textEdit.setPlainText(content)
+                        self.textEdit.toPlainText()
                         break
                     except Exception as e:
                         print(e)
+
+    def save(self):
+        print('save')
+        content = self.textEdit.toPlainText()
+        # print(content)
+        # content = self.textEdit.toPlainText()
+        # with open(self.filepath['filepath'], 'w', encoding='utf-8') as f:
+        #     f.write(content)
 
 
 if __name__ == '__main__':

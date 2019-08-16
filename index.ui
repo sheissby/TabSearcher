@@ -105,7 +105,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QTextBrowser" name="textBrowser">
+      <widget class="QTextEdit" name="textEdit">
        <property name="font">
         <font>
          <family>宋体</family>
@@ -205,5 +205,6 @@
   <slot>search()</slot>
   <slot>clear()</slot>
   <slot>show_detail()</slot>
+  <slot>save()</slot>
  </slots>
 </ui>
